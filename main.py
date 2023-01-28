@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 import requests
 import random
-import html
 
 
 app = Flask(__name__)
@@ -67,17 +66,6 @@ def take_quiz():
         and not request.args.get("quiz_on")
     ):
         question = questions[num_q]
-        question1 = html.unescape(question["question"])
-        correct_answer = html.unescape(question["correct_answer"])
-        incorrect_answer1 = html.unescape(question["incorrect_answers"][0])
-        incorrect_answer2 = html.unescape(question["incorrect_answers"][1])
-        incorrect_answer3 = html.unescape(question["incorrect_answers"][2])
-        list_answer = [
-            correct_answer,
-            incorrect_answer1,
-            incorrect_answer2,
-            incorrect_answer3,
-        ]
         score = 0
         return render_template(
             "take-quiz.html", question=question, num_q=0, track=num_q + 1, score=score
@@ -98,7 +86,6 @@ def take_quiz():
                 is_correct=is_correct,
                 track=num_q + 1,
                 score=score,
-                correct_answer=request.args.get("correct_answer"),
             )
     elif request.args.get("quiz_on") and not request.args.get("check_on"):
         num_q = int(request.args.get("num_q"))
@@ -129,7 +116,6 @@ def check_answer():
                     num_q=data["num_q"],
                     check_on=True,
                     score=score,
-                    correct_answer=data["correct_answer"],
                 )
             )
         return redirect(
@@ -139,7 +125,6 @@ def check_answer():
                 num_q=data["num_q"],
                 check_on=True,
                 score=score,
-                correct_answer=data["correct_answer"],
             )
         )
 
