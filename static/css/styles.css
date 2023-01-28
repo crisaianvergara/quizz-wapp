@@ -1,0 +1,60 @@
+/* 
+#472183 = dark violet
+#4B56D2 = violet
+#82C3EC = light blue
+#F1F6F5 = light white
+*/
+
+/* main */
+#bg-body {
+    background-color: #F1F6F5;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+/* nav */
+.navbar {
+    background-color: #4B56D2;
+}
+
+/* content */
+
+/* categories */
+#categories {
+    padding: 3% 0;
+}
+
+#categories .card-body {
+    padding: 5%;
+}
+
+#categories a {
+    margin: 5px 0;
+    width: 100%;
+}
+
+/* difficulties */
+
+#difficulties {
+    padding: 3% 0;
+}
+
+#difficulties .card-body {
+    padding: 5%;
+}
+
+#difficulties a {
+    margin: 5px 0;
+    width: 80%;
+}
+
+/* difficulties */
+
+#take-quiz {
+    padding: 3% 0;
+    text-align: left;
+}
+
+#take-quiz .card-body {
+    padding: 5%;
+}

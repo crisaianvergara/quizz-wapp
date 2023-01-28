@@ -1,0 +1,28 @@
+{% include "header.html" %}
+        <!-- Your page content -->
+        {% if empty %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>No {{ difficulty.title() }}!</strong> Select other difficulty.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% block content %}
+        <div class="container">
+            <!-- Categories -->
+            <section id="difficulties">
+              <div class="card text-bg-light mb-3 m-auto" style="max-width: 50rem;">
+                <div class="card-header">Select Difficulty</div>
+                <div class="card-body">
+                  <div class="row">
+                    {% for difficulty in list_difficulties: %}
+                    <div class="">
+                      <a href="{{ url_for('take_quiz', id = category_id, difficulty = difficulty) }}" class="btn btn-primary">{{ difficulty }}</a>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </section>
+        </div>
+        {% endblock %}
+{% include "footer.html" %}

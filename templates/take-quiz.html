@@ -1,0 +1,23 @@
+{% include "header.html" %}
+        <!-- Your page content -->
+        {% block content %}
+        <div class="container">
+            <!-- Categories -->
+            <section id="take-quiz">
+              <div class="card text-bg-light mb-3 m-auto" style="max-width: 50rem;">
+                <div class="card-header">Category Title</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="">
+                        <p>Question 1:</p>
+                        <p>{{ questions[0].question }}</p>
+                        <a class="btn btn-primary" href="{{ url_for('take_quiz', quiz_on = True) }}">Skip Question</a>
+                        <a class="btn btn-primary" href="{{ url_for('take_quiz', quiz_on = True) }}">Check Answer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+        </div>
+        {% endblock %}
+{% include "footer.html" %}
