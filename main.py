@@ -43,7 +43,7 @@ def select_difficulty():
                     difficulty=difficulty,
                 )
             )
-        return redirect(url_for("take_quiz", num_q=0, first_commit=True))
+        return redirect(url_for("take_quiz", num_q=0))
     else:
         empty = False
         difficulty = None
@@ -66,18 +66,40 @@ def take_quiz():
         and not request.args.get("quiz_on")
     ):
         question = questions[num_q]
-        return render_template("take-quiz.html", question=question, num_q=1)
+        score = 0
+        return render_template(
+            "take-quiz.html", question=question, num_q=0, track=num_q + 1, score=score
+        )
     elif request.args.get("check_on"):
         num_q = int(request.args.get("num_q"))
         if len(questions) > num_q:
             question = questions[num_q]
-            return render_template("take-quiz.html", question=question, num_q=num_q)
+            is_correct = request.args.get("is_correct")
+            if is_correct == "True":
+                score = int(request.args.get("score")) + 1
+            else:
+                score = int(request.args.get("score"))
+            return render_template(
+                "take-quiz.html",
+                question=question,
+                num_q=num_q,
+                is_correct=is_correct,
+                track=num_q + 1,
+                score=score,
+            )
     elif request.args.get("quiz_on") and not request.args.get("check_on"):
         num_q = int(request.args.get("num_q"))
-        if len(questions) > num_q:
-            question = questions[num_q]
+        if len(questions) - 1 > num_q:
             num_q += 1
-            return render_template("take-quiz.html", question=question, num_q=num_q)
+            question = questions[num_q]
+            score = int(request.args.get("score"))
+            return render_template(
+                "take-quiz.html",
+                question=question,
+                num_q=num_q,
+                track=num_q + 1,
+                score=score,
+            )
         return "finish"
 
 
@@ -85,6 +107,7 @@ def take_quiz():
 def check_answer():
     if request.method == "POST":
         data = request.form
+        score = data["score"]
         if data["correct_answer"] == data["answer"]:
             return redirect(
                 url_for(
@@ -92,6 +115,7 @@ def check_answer():
                     is_correct=True,
                     num_q=data["num_q"],
                     check_on=True,
+                    score=score,
                 )
             )
         return redirect(
@@ -100,6 +124,7 @@ def check_answer():
                 is_correct=False,
                 num_q=data["num_q"],
                 check_on=True,
+                score=score,
             )
         )
 
