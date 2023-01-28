@@ -16,7 +16,7 @@
                   <div class="row">
                     {% for difficulty in list_difficulties: %}
                     <div class="">
-                      <a href="{{ url_for('take_quiz', id = category_id, difficulty = difficulty) }}" class="btn btn-primary">{{ difficulty }}</a>
+                      <a href="{{ url_for('select_difficulty', id = category_id, difficulty = difficulty, game_on = True) }}" class="btn btn-primary">{{ difficulty }}</a>
                     </div>
                     {% endfor %}
                   </div>

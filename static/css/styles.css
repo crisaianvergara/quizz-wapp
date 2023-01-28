@@ -48,13 +48,37 @@
     width: 80%;
 }
 
-/* difficulties */
+/* take-quiz */
 
 #take-quiz {
     padding: 3% 0;
     text-align: left;
 }
 
-#take-quiz .card-body {
-    padding: 5%;
+#take-quiz p, #take-quiz .btn-container  {
+    margin: 1rem;
+}
+
+.btn-container {
+    text-align: right;
+}
+
+#take-quiz .form-check {
+    border: 1px solid #000;
+    margin: 1rem;
+    padding: 10px 2.5rem;
+    
+}
+
+#take-quiz .form-check input {
+    box-sizing: border-box;
+}
+
+#take-quiz label {
+    cursor: pointer;
+    width: 100%;
+}
+
+#take-quiz a, #take-quiz button {
+    margin-top: 0.7rem;
 }
