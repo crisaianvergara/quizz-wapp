@@ -2,13 +2,13 @@
         <!-- Your page content -->
         {% if is_correct == 'True' %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Yes!</strong> Select other difficulty.
+          <strong>You're right!</strong> Good job.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endif %}
         {% if is_correct == 'False' %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Yes!</strong> Select other difficulty.
+          <strong>You're wrong!</strong> The correct answer is {{ correct_answer }}.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endif %}
@@ -19,43 +19,43 @@
               <div class="card text-bg-light mb-3 m-auto" style="max-width: 50rem;">
                 <div class="card-header">Category: {{ question.category }}</div>
                 <div class="card-body">
-                        <p>Question {{ track }}:</p>
-                        <p>Score: {{ score }}/10</p>
-                        <p>{{ question.question }}</p>
-                        <form action="{{ url_for('check_answer') }}" method="POST">
-                        <input name="correct_answer" hidden="hidden" value="{{ question.correct_answer }}">
-                        <input name="num_q" hidden="hidden" value="{{ num_q }}">
-                        <input name="question" hidden="hidden" value="{{ question }}">
-                        <input hidden="hidden" value="{{ score }}" name="score">
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault1" value="{{ question.correct_answer }}">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              {{ question.correct_answer }}
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault2" value="{{ question.incorrect_answers[0] }}">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              {{ question.incorrect_answers[0] }}
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault3" value="{{ question.incorrect_answers[1] }}">
-                            <label class="form-check-label" for="flexRadioDefault3">
-                              {{ question.incorrect_answers[1] }}
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault4" value="{{ question.incorrect_answers[2] }}">
-                            <label class="form-check-label" for="flexRadioDefault4">
-                              {{ question.incorrect_answers[2] }}
-                            </label>
-                          </div>
-                          <div class="btn-container">
-                            <button type="submit" class="btn btn-primary">Check Answer</button>
-                            <a class="btn btn-primary" href="{{ url_for('take_quiz', num_q = num_q, quiz_on = True, score = score) }}">Next Question</a>
-                          </div>
-                        </form>
+                  <p>Question {{ track }}:</p>
+                  <p>Score: {{ score }}/10</p>
+                  <p>{{ question.question }}</p>
+                    <form action="{{ url_for('check_answer') }}" method="POST">
+                    <input name="correct_answer" hidden="hidden" value="{{ question.correct_answer }}">
+                    <input name="num_q" hidden="hidden" value="{{ num_q }}">
+                    <input name="question" hidden="hidden" value="{{ question }}">
+                    <input hidden="hidden" value="{{ score }}" name="score">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault1" value="{{ question.correct_answer }}">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          {{ question.correct_answer }}
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault2" value="{{ question.incorrect_answers[0] }}">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          {{ question.incorrect_answers[0] }}
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault3" value="{{ question.incorrect_answers[1] }}">
+                        <label class="form-check-label" for="flexRadioDefault3">
+                          {{ question.incorrect_answers[1] }}
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" id="flexRadioDefault4" value="{{ question.incorrect_answers[2] }}">
+                        <label class="form-check-label" for="flexRadioDefault4">
+                          {{ question.incorrect_answers[2] }}
+                        </label>
+                      </div>
+                      <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Check Answer</button>
+                        <a class="btn btn-primary" href="{{ url_for('take_quiz', num_q = num_q, quiz_on = True, score = score) }}">Next Question</a>
+                      </div>
+                    </form>
                 </div>
               </div>
             </section>
