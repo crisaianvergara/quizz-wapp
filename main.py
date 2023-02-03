@@ -2,10 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 import requests
 import random
+import os
 
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "sakfjlaksfjlaskfjalss/a,fasjf"
+app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY")
 bootstrap = Bootstrap5
 bootstrap(app)
 
